@@ -3,10 +3,8 @@
 namespace Adue\WordPressPlugin;
 
 use Adue\WordPressBasePlugin\BasePlugin;
-use Adue\WordPressPlugin\Admin\CustomOption;
-use Adue\WordPressPlugin\Admin\CustomSubmenuPage;
-use Adue\WordPressPlugin\PostTypes\BookPostType;
-use Adue\WordPressPlugin\Admin\CustomMenuPage;
+use Adue\WordPressPlugin\Admin\Pages\HolaVeggie;
+use Adue\WordPressPlugin\Admin\Pages\UpdatePage;
 
 class Plugin extends BasePlugin
 {
@@ -15,7 +13,10 @@ class Plugin extends BasePlugin
 
     public function init()
     {
-        //Make some awesome
+        $pluginConfigPage = new HolaVeggie();
+        $pluginConfigPage->setSubpage(new UpdatePage());
+        $pluginConfigPage->add();
+        $pluginConfigPage->addSubmenus();
     }
 
 }

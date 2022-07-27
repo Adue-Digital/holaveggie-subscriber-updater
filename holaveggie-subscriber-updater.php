@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name:  WordPress Plugin
+Plugin Name:  HolaVeggie Subscriber Updater
 Description:  A small plugin that use WordPress Base Plugin package.
 Version:      0.0.1
 Author: Marcio Fuentes

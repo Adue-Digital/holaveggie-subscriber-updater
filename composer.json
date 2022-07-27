@@ -17,7 +17,8 @@
   "require": {
     "adue/wordpress-base-plugin": "*",
     "php-di/php-di": "dev-master",
-    "hassankhan/config": "*"
+    "hassankhan/config": "*",
+    "adue/mobbex": "dev-master"
   },
   "repositories": [
     {
