@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1b0460fbf34292d3693c767944ae1647",
+    "content-hash": "363cfb0f961ea136394337507b4dc4f5",
     "packages": [
         {
             "name": "adue/mobbex",
@@ -57,20 +57,28 @@
         {
             "name": "adue/wordpress-base-plugin",
             "version": "dev-main",
-            "dist": {
-                "type": "path",
-                "url": "../../../../wordpress-base-plugin",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Adue-Digital/wordpress-base-plugin.git",
                 "reference": "a7e9872f9114350ef380bfbd4eecae7a2e23ebd3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Adue-Digital/wordpress-base-plugin/zipball/a7e9872f9114350ef380bfbd4eecae7a2e23ebd3",
+                "reference": "a7e9872f9114350ef380bfbd4eecae7a2e23ebd3",
+                "shasum": ""
             },
             "require": {
                 "hassankhan/config": "*"
             },
+            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
                     "Adue\\WordPressBasePlugin\\": "src/"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -80,9 +88,11 @@
                 }
             ],
             "description": "A basic skeleton for build WordPress plugins",
-            "transport-options": {
-                "relative": true
-            }
+            "support": {
+                "issues": "https://github.com/Adue-Digital/wordpress-base-plugin/issues",
+                "source": "https://github.com/Adue-Digital/wordpress-base-plugin/tree/main"
+            },
+            "time": "2022-06-26T21:53:34+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -594,12 +604,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHP-DI/PHP-DI.git",
-                "reference": "e0137dc1cd7aae476f3d14b815f11d6cd080b762"
+                "reference": "9a1d0e8fc4c36ae6f5734dd214ce843b099cd432"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHP-DI/PHP-DI/zipball/e0137dc1cd7aae476f3d14b815f11d6cd080b762",
-                "reference": "e0137dc1cd7aae476f3d14b815f11d6cd080b762",
+                "url": "https://api.github.com/repos/PHP-DI/PHP-DI/zipball/9a1d0e8fc4c36ae6f5734dd214ce843b099cd432",
+                "reference": "9a1d0e8fc4c36ae6f5734dd214ce843b099cd432",
                 "shasum": ""
             },
             "require": {
@@ -614,7 +624,7 @@
             },
             "require-dev": {
                 "doctrine/annotations": "~1.10",
-                "friendsofphp/php-cs-fixer": "^2.4",
+                "friendsofphp/php-cs-fixer": "^3",
                 "mnapoli/phpunit-easymock": "^1.2",
                 "ocramius/proxy-manager": "^2.11.2",
                 "phpstan/phpstan": "^0.12",
@@ -663,7 +673,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-05-20T17:24:20+00:00"
+            "time": "2022-07-18T09:30:16+00:00"
         },
         {
             "name": "php-di/phpdoc-reader",
@@ -814,12 +824,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-fig/http-factory.git",
-                "reference": "36fa03d50ff82abcae81860bdaf4ed9a1510c7cd"
+                "reference": "5a4f141ac2e5bc35e615134f127e1833158d2944"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/http-factory/zipball/36fa03d50ff82abcae81860bdaf4ed9a1510c7cd",
-                "reference": "36fa03d50ff82abcae81860bdaf4ed9a1510c7cd",
+                "url": "https://api.github.com/repos/php-fig/http-factory/zipball/5a4f141ac2e5bc35e615134f127e1833158d2944",
+                "reference": "5a4f141ac2e5bc35e615134f127e1833158d2944",
                 "shasum": ""
             },
             "require": {
@@ -862,7 +872,7 @@
             "support": {
                 "source": "https://github.com/php-fig/http-factory/tree/master"
             },
-            "time": "2020-09-17T16:52:55+00:00"
+            "time": "2022-07-14T07:21:53+00:00"
         },
         {
             "name": "psr/http-message",

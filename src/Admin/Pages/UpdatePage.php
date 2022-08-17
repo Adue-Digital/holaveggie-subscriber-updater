@@ -3,6 +3,7 @@
 namespace Adue\WordPressPlugin\Admin\Pages;
 
 use Adue\Mobbex\Mobbex;
+use Adue\WordPressBasePlugin\Base\Config;
 use Adue\WordPressBasePlugin\Modules\Admin\BaseMenuPage;
 use Adue\WordPressPlugin\Admin\Options\MobbexConfig;
 use Adue\WordPressPlugin\Admin\Options\PlanesOption;
@@ -29,8 +30,8 @@ class UpdatePage extends BaseMenuPage
     public function render()
     {
         if(isset($_POST['updating'])) {
-            $processResponse = $this->preProcess();
-            $this->view()->set('processResponse', $processResponse);
+            $logName = $this->preProcess();
+            $this->view()->set('logName', $logName);
             $this->view()->render('admin/update');
             die;
         }
@@ -42,23 +43,32 @@ class UpdatePage extends BaseMenuPage
         $fila = 0;
         $processResponse = '';
         if (($gestor = fopen($_FILES['upload_file']['tmp_name'], "r")) !== FALSE) {
+            $logName = 'Log-'.date('Y-m-d_H-i-s').'.csv';
+            $fp = fopen(__DIR__.'/../../../storage/logs/'.$logName, 'w');
             while (($datos = fgetcsv($gestor, 1000, ",")) !== FALSE) {
+                $linea = [];
                 if($fila == 0) {
+                    $linea = ['Suscriptor', 'Acción', 'Dato adicional', 'Resultado', 'Mensaje'];
+                    fputcsv($fp, $linea);
                     $fila++;
                     continue;
                 }
-                $processResponse .= "Línea: ".$fila." - ";
-                $processResponse .= "Suscriptor ".$datos[0]." - ";
-                $processResponse .= "Acción ".$datos[1]." - ";
+                $linea[] = $datos[0]; //Suscriptor
+                $linea[] = $datos[1]; //Acción
                 $subscriber = $this->getSubscriberData($datos[0]);
                 if (!$subscriber) {
-                    $processResponse .= "No existe suscriptor\n";
+                    $linea[] = ''; //Dato adicional
+                    $linea[] = 'Error'; //Dato adicional
+                    $linea[] = "No existe suscriptor";
+                    fputcsv($fp, $linea);
+                    $fila++;
                     continue;
                 }
                 $aditionalData = '';
                 switch ($datos[1]) {
                     case "Suspender":
                         $response = $this->suspend($subscriber['uid'], $subscriber['subscription']['uid']);
+                        $aditionalData = '';
                         break;
                     case "Cambiar":
                         $response = $this->move($subscriber['uid'], $subscriber['subscription']['uid'], $datos[2]);
@@ -73,15 +83,16 @@ class UpdatePage extends BaseMenuPage
                         break;
                 }
 
-                $processResponse .= !empty($aditionalData) ? $aditionalData.' - ' : '';
-                $processResponse .= "Resultado ";
-                $processResponse .= $response['result'] ? 'éxito' : 'error';
-                echo "\n";
+                $linea[] = $aditionalData;
+                $linea[] = $response['result'] ? 'éxito' : 'error';
+                $linea[] = $response['result'] ? '' : "Código de error: ".$response['code'] . " - Error: " .$response['error'];
+                fputcsv($fp, $linea);
+                $fila++;
             }
             fclose($gestor);
         }
 
-        return $processResponse;
+        return $logName;
     }
 
     private function getSubscriberData($email)
